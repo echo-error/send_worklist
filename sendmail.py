@@ -94,5 +94,5 @@ while len(to_addr_list)>0:
         print "email sent successfully! %s" %to_addr
         count = count + 1
 
-print u'成功发送%d封邮件' %count
+print u'成功发送%d封邮件！' %count
 #print u'发送失败的对象 %s' %to_addr_failed_list
