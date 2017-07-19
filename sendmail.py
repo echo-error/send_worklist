@@ -81,7 +81,7 @@ while len(to_addr_list)>0:
 
     except smtplib.SMTPException,e:
         #print "email sent failed! %s" %to_addr
-        print "发送给%s的邮件失败,原因如下：%s" %(to_addr,e)
+        print "发送给%s的邮件失败,原因：%s" %(to_addr,e)
         flag=raw_input("是否重新投递Y/n ?")
         if flag=="Y" or flag=="y" or flag=="":     #用户如果重发，则"故障目标邮件地址"与两个"附件"重新入列
                 to_addr_list.append(to_addr)
