@@ -41,8 +41,8 @@ smtp_server = 'smtp.126.com'
 path=u'H:\\work\\work_list\\201707教师工单\\'
 #msg = MIMEText('hello, send by Python...', 'plain', 'utf-8')
 count=0 #初始化计数器
-to_addr_failed_list=[]
-attach_failed_list=[]
+#to_addr_failed_list=[]
+#attach_failed_list=[]
 
 #循环发送邮件
 while len(to_addr_list)>0:
