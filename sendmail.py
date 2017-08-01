@@ -86,7 +86,7 @@ while len(to_addr_list)>0:
         if flag=="Y" or flag=="y" or flag=="":     #用户如果重发，则"故障目标邮件地址"与两个"附件"重新入列
                 to_addr_list.append(to_addr)
                 workfile_list.append(attach1)
-                workfile_list.append(attach1)
+                workfile_list.append(attach2)
                #to_addr_failed_list.append(to_addr)
                #attach_failed_list.append(attach1)
                #attach_failed_list.append(attach2)
