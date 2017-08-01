@@ -12,11 +12,11 @@ from   email.mime.application import MIMEApplication
 
 
 #获得工单文件名list
-workfile_list=os.listdir(u'H:\\work\\work_list\\201707教师工单\\')
+workfile_list=os.listdir(u'H:\\work\\work_list\\201708教师工单\\')
 #按文件名排序
 workfile_list.sort()
 i=0
-while i<22:
+while i<24:
     print workfile_list[i]
     i=i+1
 
@@ -33,12 +33,12 @@ password = raw_input('Password: ')
 
 #to_addr = raw_input('To: ')
 #获得收件人地址list
-to_addr_list=['z_zming@126.com','zzming2@hljqn.com','z_zming3@126.com','zzming4@hljqn.com',
-              'z_zming5@126.com','zzming@hljqn.com','z_zming@126.com','zzming8@hljqn.com',
-              'z_zming9@126.com','zzming@hljqn.com','z_zming11@126.com']
+to_addr_list=['anyueying2005@163.com','ght18@163.com','52463421@qq.com','llongh@163.com','sun12345678@sina.com',
+'qqsunyujuan@163.com','wangkim@netease.com','cuihainan_1998@163.com','qiduoduo@163.com','18945099122@189.cn',
+'yxmingh@hotmail.com','863958765@qq.com']
 smtp_server = 'smtp.126.com'
 #工单所在路径
-path=u'H:\\work\\work_list\\201707教师工单\\'
+path=u'H:\\work\\work_list\\201708教师工单\\'
 #msg = MIMEText('hello, send by Python...', 'plain', 'utf-8')
 count=0 #初始化计数器
 #to_addr_failed_list=[]
@@ -54,8 +54,8 @@ while len(to_addr_list)>0:
 
     msg = MIMEMultipart()
     msg['From'] = _format_addr(u'仲照明 <%s>' % from_addr)
-    msg['To'] = _format_addr(u'亲爱的同事 <%s>' % to_addr)
-    msg['Subject'] = Header(u'2017.08月工单……', 'utf-8').encode()
+    msg['To'] = _format_addr(u'学术部 <%s>' % to_addr)
+    msg['Subject'] = Header(u'2017.08月工单及07月得分', 'utf-8').encode()
     #---这是email正文部分---
     part_text = MIMEText(u'请看附件','plain','utf-8')
     msg.attach(part_text)
@@ -86,7 +86,7 @@ while len(to_addr_list)>0:
         if flag=="Y" or flag=="y" or flag=="":     #用户如果重发，则"故障目标邮件地址"与两个"附件"重新入列
                 to_addr_list.append(to_addr)
                 workfile_list.append(attach1)
-                workfile_list.append(attach1)
+                workfile_list.append(attach2)
                #to_addr_failed_list.append(to_addr)
                #attach_failed_list.append(attach1)
                #attach_failed_list.append(attach2)
