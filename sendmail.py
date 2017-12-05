@@ -9,14 +9,16 @@ from   email.mime.text import MIMEText
 from   email.utils import parseaddr, formataddr
 from   email.mime.multipart import MIMEMultipart
 from   email.mime.application import MIMEApplication
-
+#工单所在路径
+work_path=u'H:\\work\\work_list\\201712教师工单\\'
 
 #获得工单文件名list
-workfile_list=os.listdir(u'H:\\work\\work_list\\201708教师工单\\')
+workfile_list=os.listdir(work_path)
 #按文件名排序
 workfile_list.sort()
+print len(workfile_list)
 i=0
-while i<24:
+while i<len(workfile_list):
     print workfile_list[i]
     i=i+1
 
@@ -35,10 +37,9 @@ password = raw_input('Password: ')
 #获得收件人地址list
 to_addr_list=['anyueying2005@163.com','ght18@163.com','52463421@qq.com','llongh@163.com','sun12345678@sina.com',
 'qqsunyujuan@163.com','wangkim@netease.com','cuihainan_1998@163.com','qiduoduo@163.com','18945099122@189.cn',
-'yxmingh@hotmail.com','863958765@qq.com']
+'yxmingh@hotmail.com']
 smtp_server = 'smtp.126.com'
-#工单所在路径
-path=u'H:\\work\\work_list\\201708教师工单\\'
+
 #msg = MIMEText('hello, send by Python...', 'plain', 'utf-8')
 count=0 #初始化计数器
 #to_addr_failed_list=[]
@@ -49,13 +50,14 @@ while len(to_addr_list)>0:
     to_addr = to_addr_list.pop(0) #左弹出收件地址列表并赋值于收件人
     attach1_name = workfile_list.pop(0)#左弹出工单列表并赋值于附件1
     attach2_name = workfile_list.pop(0)  # 继续左弹出工单列表并赋值于附件2
-    attach1 = os.path.join(path,attach1_name)
-    attach2 = os.path.join(path,attach2_name)
+    attach1 = os.path.join(work_path,attach1_name)
+    attach2 = os.path.join(work_path,attach2_name)
 
     msg = MIMEMultipart()
     msg['From'] = _format_addr(u'仲照明 <%s>' % from_addr)
     msg['To'] = _format_addr(u'学术部 <%s>' % to_addr)
-    msg['Subject'] = Header(u'2017.08月工单及07月得分', 'utf-8').encode()
+    msg['Subject'] = Header(u'2017.12'
+                            u'月工单及11月得分', 'utf-8').encode()
     #---这是email正文部分---
     part_text = MIMEText(u'请看附件','plain','utf-8')
     msg.attach(part_text)
@@ -79,7 +81,7 @@ while len(to_addr_list)>0:
         server.sendmail(from_addr, [to_addr], msg.as_string())
         server.quit()
 
-    except smtplib.SMTPException,e:
+    except  smtplib.SMTPException,e:
         #print "email sent failed! %s" %to_addr
         print "发送给%s的邮件失败,原因：%s" %(to_addr,e)
         flag=raw_input("是否重新投递Y/n ?")
