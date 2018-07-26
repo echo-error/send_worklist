@@ -11,12 +11,12 @@ from   email.utils import parseaddr, formataddr
 from   email.mime.multipart import MIMEMultipart
 from   email.mime.application import MIMEApplication
 
-reload(sys)
-sys.setdefaultencoding('utf-8')
+
 #工单所在路径
-print u'中文测试'
-subdir_name=raw_input(u'请输入目录的月份,如201712：'.encode('gbk')) '''raw_input函数不支持unicode,如果需要在windows环境cmd下运行，
-                                                                   需要将raw_input()中文转码为gbk,否则乱码'''
+
+subdir_name=raw_input(u'请输入目录的月份,如201712：'.encode('gbk'))
+                                                                   ###raw_input函数不支持unicode,如果需要在windows环境cmd下运行，
+                                                                   ###需要将raw_input()中文转码为gbk,否则乱码'''
 subject=raw_input(u"请输入邮件标题，如  '2017.12月工单及11月得分':".encode('gbk'))
 work_path=u'H:\\work\\work_list\\'+subdir_name+u'教师工单\\'
 print work_path
@@ -91,7 +91,7 @@ while len(to_addr_list)>0:
     except  smtplib.SMTPException,e:
         #print "email sent failed! %s" %to_addr
         print u"发送给%s的邮件失败,原因：%s" %(to_addr,e)
-        flag=raw_input(u"是否重新投递Y/n ?".encode('gbk'))
+        flag=raw_input(u'是否重新投递Y/n ?'.encode('gbk'))
         if flag=="Y" or flag=="y" or flag=="":     #用户如果重发，则"故障目标邮件地址"与两个"附件"重新入列
                 to_addr_list.append(to_addr)
                 workfile_list.append(attach1)
