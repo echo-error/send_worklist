@@ -2,7 +2,6 @@
 #-*- coding: utf-8 -*-
 
 import os
-import sys
 import smtplib
 #from   email import encoders
 from   email.header import Header
