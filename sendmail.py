@@ -62,7 +62,7 @@ while len(to_addr_list)>0:
     attach2 = os.path.join(work_path,attach2_name)
 
     msg = MIMEMultipart()
-    msg['From'] = _format_addr(u'仲照明 <%s>' % from_addr)
+    msg['From'] = _format_addr(u'发件人 <%s>' % from_addr)
     msg['To'] = _format_addr(u'学术部 <%s>' % to_addr)
     msg['Subject'] = Header(subject, 'utf-8').encode()
     #---这是email正文部分---
