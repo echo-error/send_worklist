@@ -2,6 +2,7 @@
 #-*- coding: utf-8 -*-
 
 import os
+import sys
 import smtplib
 #from   email import encoders
 from   email.header import Header
@@ -9,9 +10,16 @@ from   email.mime.text import MIMEText
 from   email.utils import parseaddr, formataddr
 from   email.mime.multipart import MIMEMultipart
 from   email.mime.application import MIMEApplication
-#工单所在路径
-work_path=u'H:\\work\\work_list\\201712教师工单\\'
 
+reload(sys)
+sys.setdefaultencoding('utf-8')
+#工单所在路径
+print u'中文测试'
+subdir_name=raw_input(u'请输入目录的月份,如201712：'.encode('gbk')) '''raw_input函数不支持unicode,如果需要在windows环境cmd下运行，
+                                                                   需要将raw_input()中文转码为gbk,否则乱码'''
+subject=raw_input(u"请输入邮件标题，如  '2017.12月工单及11月得分':".encode('gbk'))
+work_path=u'H:\\work\\work_list\\'+subdir_name+u'教师工单\\'
+print work_path
 #获得工单文件名list
 workfile_list=os.listdir(work_path)
 #按文件名排序
@@ -37,7 +45,7 @@ password = raw_input('Password: ')
 #获得收件人地址list
 to_addr_list=['anyueying2005@163.com','ght18@163.com','52463421@qq.com','llongh@163.com','sun12345678@sina.com',
 'qqsunyujuan@163.com','wangkim@netease.com','cuihainan_1998@163.com','qiduoduo@163.com','18945099122@189.cn',
-'yxmingh@hotmail.com']
+'ming_141@163.com','18846168610@163.com']
 smtp_server = 'smtp.126.com'
 
 #msg = MIMEText('hello, send by Python...', 'plain', 'utf-8')
@@ -56,8 +64,7 @@ while len(to_addr_list)>0:
     msg = MIMEMultipart()
     msg['From'] = _format_addr(u'仲照明 <%s>' % from_addr)
     msg['To'] = _format_addr(u'学术部 <%s>' % to_addr)
-    msg['Subject'] = Header(u'2017.12'
-                            u'月工单及11月得分', 'utf-8').encode()
+    msg['Subject'] = Header(subject, 'utf-8').encode()
     #---这是email正文部分---
     part_text = MIMEText(u'请看附件','plain','utf-8')
     msg.attach(part_text)
@@ -83,8 +90,8 @@ while len(to_addr_list)>0:
 
     except  smtplib.SMTPException,e:
         #print "email sent failed! %s" %to_addr
-        print "发送给%s的邮件失败,原因：%s" %(to_addr,e)
-        flag=raw_input("是否重新投递Y/n ?")
+        print u"发送给%s的邮件失败,原因：%s" %(to_addr,e)
+        flag=raw_input(u"是否重新投递Y/n ?".encode('gbk'))
         if flag=="Y" or flag=="y" or flag=="":     #用户如果重发，则"故障目标邮件地址"与两个"附件"重新入列
                 to_addr_list.append(to_addr)
                 workfile_list.append(attach1)
